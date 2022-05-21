@@ -22,7 +22,7 @@ class Body extends StatelessWidget {
           ),
           SizedBox(height: size.height * 0.05),
           SizedBox(
-            height: size.height * 0.05,
+            height: size.height * cMainButtonHeightFactor,
             width: size.width * cMainButtonWidthFactor,
             child: TextButton(
               style: ButtonStyle(
@@ -37,9 +37,9 @@ class Body extends StatelessWidget {
               child: const Text("LOGIN", style: TextStyle(color: Colors.white)),
             ),
           ),
-          SizedBox(height: size.height * 0.01),
+          SizedBox(height: size.height * 0.015),
           SizedBox(
-            height: size.height * 0.05,
+            height: size.height * cMainButtonHeightFactor,
             width: size.width * cMainButtonWidthFactor,
             child: TextButton(
               style: ButtonStyle(
