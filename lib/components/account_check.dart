@@ -21,7 +21,7 @@ class AccountCheck extends StatelessWidget {
         Container(
           margin: EdgeInsets.only(top: size.height * 0.01),
           child: Text(
-            login ? "Don't have an Account? " : "Already have an account?",
+            login ? "Don't have an Account? " : "Already have an account? ",
             style: const TextStyle(
               color: cPrimaryColor,
             ),
