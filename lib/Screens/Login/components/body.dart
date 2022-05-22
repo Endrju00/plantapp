@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:plantapp/Screens/Login/components/background.dart';
+import 'package:plantapp/Screens/Signup/signup_screen.dart';
 import 'package:plantapp/components/account_check.dart';
 import 'package:plantapp/components/rounded_button.dart';
 import 'package:plantapp/components/rounded_input_field.dart';
@@ -40,7 +41,16 @@ class Body extends StatelessWidget {
               press: () {},
             ),
             AccountCheck(
-              press: () {},
+              press: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return SignUpScreen();
+                    },
+                  ),
+                );
+              },
             ),
           ],
         ),
