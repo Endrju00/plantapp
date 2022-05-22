@@ -27,11 +27,9 @@ class Body extends StatelessWidget {
               "SIGN UP",
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
-            Container(
-              child: Image.asset(
-                "assets/images/signup_center.png",
-                width: size.width * 0.5,
-              ),
+            Image.asset(
+              "assets/images/signup_center.png",
+              width: size.width * 0.45,
             ),
             RoundedInputField(
               hintText: "Your username",
