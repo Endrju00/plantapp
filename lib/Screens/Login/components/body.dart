@@ -4,7 +4,6 @@ import 'package:plantapp/components/account_check.dart';
 import 'package:plantapp/components/rounded_button.dart';
 import 'package:plantapp/components/rounded_input_field.dart';
 import 'package:plantapp/components/rounded_password_field.dart';
-import 'package:plantapp/constants.dart';
 
 class Body extends StatelessWidget {
   const Body({
