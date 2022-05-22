@@ -4,9 +4,11 @@ import 'package:plantapp/constants.dart';
 
 class RoundedPasswordField extends StatelessWidget {
   final ValueChanged<String> onChanged;
+  final String hintText;
   const RoundedPasswordField({
     Key? key,
     required this.onChanged,
+    this.hintText = "Password",
   }) : super(key: key);
 
   @override
@@ -15,9 +17,9 @@ class RoundedPasswordField extends StatelessWidget {
       child: TextField(
         obscureText: true,
         onChanged: onChanged,
-        decoration: const InputDecoration(
-          hintText: "Password",
-          icon: Icon(
+        decoration: InputDecoration(
+          hintText: hintText,
+          icon: const Icon(
             Icons.lock,
             color: cPrimaryColor,
           ),
