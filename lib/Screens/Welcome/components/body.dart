@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:plantapp/Screens/Login/login_screen.dart';
 import 'package:plantapp/Screens/Signup/signup_screen.dart';
 import 'package:plantapp/Screens/Welcome/components/background.dart';
+import 'package:plantapp/components/animations/change_screen.dart';
 import 'package:plantapp/components/rounded_button.dart';
 import 'package:plantapp/constants.dart';
 
@@ -32,27 +33,13 @@ class Body extends StatelessWidget {
             RoundedButton(
               text: "LOGIN",
               press: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return LoginScreen();
-                    },
-                  ),
-                );
+                Navigator.push(context, goToLoginScreen());
               },
             ),
             RoundedButton(
               text: "REGISTER",
               press: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return SignUpScreen();
-                    },
-                  ),
-                );
+                Navigator.push(context, goToSignupScreen());
               },
               color: cPrimaryLightColor,
               textColor: Colors.black,
