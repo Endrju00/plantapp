@@ -43,6 +43,7 @@ class _BodyState extends State<Body> {
     if (response.statusCode == 200) {
       token = Token.fromJson(jsonDecode(response.body));
       await prefs.setString('token', token.token);
+      await Navigator.pushReplacement(context, goToHomeScreen());
       return token;
     } else {
       throw Exception('Failed to login.');
@@ -84,6 +85,7 @@ class _BodyState extends State<Body> {
             RoundedButton(
               text: "LOGIN",
               press: () {
+                FocusScope.of(context).unfocus();
                 setState(() {
                   _futureToken =
                       logIn(_usernameController.text, _passwordController.text);
@@ -126,7 +128,9 @@ class _BodyState extends State<Body> {
             ),
           );
         }
-        return const CircularProgressIndicator(color: Colors.green,);
+        return const CircularProgressIndicator(
+          color: Colors.green,
+        );
       },
     );
   }

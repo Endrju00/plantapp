@@ -45,6 +45,8 @@ class _BodyState extends State<Body> {
     );
 
     if (response.statusCode == 201) {
+      // ignore: use_build_context_synchronously
+      Navigator.pushReplacement(context, goToLoginScreen());
       return User.fromJson(jsonDecode(response.body));
     } else {
 
