@@ -5,16 +5,19 @@ import 'package:plantapp/constants.dart';
 class RoundedPasswordField extends StatelessWidget {
   final ValueChanged<String> onChanged;
   final String hintText;
+  final TextEditingController controller;
+
   const RoundedPasswordField({
     Key? key,
     required this.onChanged,
-    this.hintText = "Password",
+    this.hintText = "Password", required this.controller,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFieldContainer(
       child: TextField(
+        controller: controller,
         obscureText: true,
         onChanged: onChanged,
         decoration: InputDecoration(

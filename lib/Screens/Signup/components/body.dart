@@ -10,7 +10,11 @@ import 'package:plantapp/components/rounded_password_field.dart';
 
 class Body extends StatelessWidget {
   final Widget child;
-  const Body({
+  final _usernameController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _password2Controller = TextEditingController();
+
+  Body({
     Key? key,
     required this.child,
   }) : super(key: key);
@@ -32,13 +36,16 @@ class Body extends StatelessWidget {
               width: size.width * 0.45,
             ),
             RoundedInputField(
+              controller: _usernameController,
               hintText: "Your username",
               onChanged: (value) {},
             ),
             RoundedPasswordField(
+              controller: _passwordController,
               onChanged: (value) {},
             ),
             RoundedPasswordField(
+              controller: _password2Controller,
               hintText: "Repeat password",
               onChanged: (value) {},
             ),
