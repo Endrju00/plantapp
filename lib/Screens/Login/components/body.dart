@@ -12,7 +12,7 @@ import 'package:plantapp/components/rounded_password_field.dart';
 import 'package:plantapp/plantapi/models.dart';
 
 class Body extends StatefulWidget {
-  Body({
+  const Body({
     Key? key,
   }) : super(key: key);
 
@@ -26,8 +26,6 @@ class _BodyState extends State<Body> {
   final _passwordController = TextEditingController();
 
   Future<Token>? _futureToken;
-
-  bool clicked = false;
 
   Future<Token> logIn(String username, String password) async {
     final Token token;
@@ -70,7 +68,9 @@ class _BodyState extends State<Body> {
               ),
             ),
             Container(
-              child: (!clicked) ? buildEmptyText() : buildFutureBuilder(),
+              child: (_futureToken == null)
+                  ? buildEmptyText()
+                  : buildFutureBuilder(),
             ),
             RoundedInputField(
               controller: _usernameController,
@@ -88,7 +88,6 @@ class _BodyState extends State<Body> {
                   _futureToken =
                       logIn(_usernameController.text, _passwordController.text);
                 });
-                clicked = true;
               },
             ),
             AccountCheck(
@@ -127,7 +126,7 @@ class _BodyState extends State<Body> {
             ),
           );
         }
-        return const CircularProgressIndicator();
+        return const CircularProgressIndicator(color: Colors.green,);
       },
     );
   }
