@@ -1,16 +1,55 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
+
 import 'package:plantapp/Screens/Login/components/background.dart';
-import 'package:plantapp/Screens/Signup/signup_screen.dart';
 import 'package:plantapp/components/account_check.dart';
 import 'package:plantapp/components/animations/change_screen.dart';
 import 'package:plantapp/components/rounded_button.dart';
 import 'package:plantapp/components/rounded_input_field.dart';
 import 'package:plantapp/components/rounded_password_field.dart';
+import 'package:plantapp/plantapi/models.dart';
 
-class Body extends StatelessWidget {
-  const Body({
+class Body extends StatefulWidget {
+  Body({
     Key? key,
   }) : super(key: key);
+
+  @override
+  State<Body> createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
+  final _usernameController = TextEditingController();
+
+  final _passwordController = TextEditingController();
+
+  Future<Token>? _futureToken;
+
+  bool clicked = false;
+
+  Future<Token> logIn(String username, String password) async {
+    final Token token;
+    final prefs = await SharedPreferences.getInstance();
+
+    final response = await http.post(
+      Uri.parse('https://water-plant-api.herokuapp.com/login/'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(
+          <String, String>{'username': username, 'password': password}),
+    );
+
+    if (response.statusCode == 200) {
+      token = Token.fromJson(jsonDecode(response.body));
+      await prefs.setString('token', token.token);
+      return token;
+    } else {
+      throw Exception('Failed to login.');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,16 +69,27 @@ class Body extends StatelessWidget {
                 "assets/images/login_center.png",
               ),
             ),
+            Container(
+              child: (!clicked) ? buildEmptyText() : buildFutureBuilder(),
+            ),
             RoundedInputField(
+              controller: _usernameController,
               hintText: "Your username",
               onChanged: (value) {},
             ),
             RoundedPasswordField(
+              controller: _passwordController,
               onChanged: (value) {},
             ),
             RoundedButton(
               text: "LOGIN",
-              press: () {},
+              press: () {
+                setState(() {
+                  _futureToken =
+                      logIn(_usernameController.text, _passwordController.text);
+                });
+                clicked = true;
+              },
             ),
             AccountCheck(
               press: () {
@@ -49,6 +99,36 @@ class Body extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  Text buildEmptyText() {
+    return const Text('');
+  }
+
+  FutureBuilder<Token> buildFutureBuilder() {
+    return FutureBuilder<Token>(
+      future: _futureToken,
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return const Text(
+            'Success!',
+            style: TextStyle(
+              color: Colors.green,
+              fontWeight: FontWeight.bold,
+            ),
+          );
+        } else if (snapshot.hasError) {
+          return const Text(
+            "Username or password is wrong :(",
+            style: TextStyle(
+              color: Colors.red,
+              fontWeight: FontWeight.bold,
+            ),
+          );
+        }
+        return const CircularProgressIndicator();
+      },
     );
   }
 }
