@@ -19,6 +19,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   Future<String>? _futureToken;
+  final style = const TextStyle(fontWeight: FontWeight.normal);
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +48,7 @@ class _MyAppState extends State<MyApp> {
           return const WelcomeScreen();
         }
         return const LoadingScreen(
-          text: 'Logging in...',
+          text: 'Cleaning dust from plants...',
         );
       },
     );
