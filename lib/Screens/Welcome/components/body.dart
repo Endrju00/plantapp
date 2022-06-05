@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:plantapp/Screens/Login/login_screen.dart';
-import 'package:plantapp/Screens/Signup/signup_screen.dart';
 import 'package:plantapp/Screens/Welcome/components/background.dart';
 import 'package:plantapp/components/animations/change_screen.dart';
 import 'package:plantapp/components/rounded_button.dart';

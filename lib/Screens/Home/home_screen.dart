@@ -14,21 +14,17 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: const Drawer(),
-      body: Stack(
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              const TopBar(),
-              Expanded(
-                child: ListView.builder(
-                  itemCount: plants.length,
-                  itemBuilder: (BuildContext ctx, int index) {
-                    return ListElement(plant: plants[index]);
-                  },
-                ),
-              ),
-            ],
+          const TopBar(),
+          Expanded(
+            child: ListView.builder(
+              itemCount: plants.length,
+              itemBuilder: (BuildContext ctx, int index) {
+                return ListElement(plant: plants[index]);
+              },
+            ),
           ),
           const NavBar(),
         ],

@@ -24,7 +24,7 @@ class ListElement extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
               child: Image.asset(
-                'assets/images/${plant.imgName}.png',
+                'assets/images/${plant.imgName}.jpg',
                 fit: BoxFit.cover,
               ),
             ),
