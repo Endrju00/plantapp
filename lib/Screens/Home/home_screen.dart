@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:plantapp/Screens/Home/components/list_element.dart';
+import 'package:plantapp/Screens/Home/components/topbar.dart';
+import 'package:plantapp/components/navbar.dart';
 import 'package:plantapp/plantapi/models.dart';
 import 'package:plantapp/plantapi/utils.dart';
 
@@ -10,24 +13,25 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(),
-      body: Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(
-                top: 10,
-                bottom: 10,
+      drawer: const Drawer(),
+      body: Stack(
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const TopBar(),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: plants.length,
+                  itemBuilder: (BuildContext ctx, int index) {
+                    return ListElement(plant: plants[index]);
+                  },
+                ),
               ),
-              child: Text(
-                'Your plants',
-                style: TextStyle(color: Colors.black),
-                textAlign: TextAlign.center,
-              ),
-            )
-          ],
-        ),
+            ],
+          ),
+          const NavBar(),
+        ],
       ),
     );
   }

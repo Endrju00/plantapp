@@ -128,8 +128,11 @@ class _BodyState extends State<Body> {
             ),
           );
         }
-        return const CircularProgressIndicator(
-          color: Colors.green,
+        return const Padding(
+          padding: EdgeInsets.only(top: 10, bottom:20),
+          child: CircularProgressIndicator(
+            color: Colors.green,
+          ),
         );
       },
     );
