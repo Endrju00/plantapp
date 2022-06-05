@@ -64,6 +64,5 @@ class _MyAppState extends State<MyApp> {
     } else {
       throw Exception('User is not logged in.');
     }
-    // await prefs.remove('token');
   }
 }
